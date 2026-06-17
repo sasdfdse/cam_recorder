@@ -1,33 +1,46 @@
 # cam_recorder
-USB camera live preview and video recorder with PyQt5 GUI
 
-# cam_recorder
+A USB camera live preview and video recording package.
 
-USB 카메라 라이브 프리뷰 및 영상 녹화 패키지.  
-PyQt5 GUI로 카메라 미리보기와 녹화를 제어하며, 기존 `robocup_vision`의 `usb_cam` V4L2 드라이버 구조를 참고해 OpenCV + V4L2 백엔드로 캡처합니다.
+This package provides a PyQt5-based GUI for camera preview and recording control. Video capture is implemented using an OpenCV + V4L2 backend, following the architecture of the `usb_cam` V4L2 driver used in `robocup_vision`.
 
-## 기능
+## Features
 
-- `/dev/video*` 디바이스 자동 탐색
-- 해상도 선택: 320x240 / 640x480 / 1280x720 / 1280x960 / 1920x1080
-- FPS 선택: 15 / 30 / 60
-- 라이브 프리뷰 (녹화 중 빨간 점 오버레이)
-- 저장 포맷: mp4v(.mp4), XVID(.avi), MJPG(.avi)
-- 저장 경로 및 파일명 자동 타임스탬프 (`recording_YYYYMMDD_HHMMSS`)
+* Automatic detection of `/dev/video*` devices
+* Selectable resolutions:
 
-## 의존성
+  * 320×240
+  * 640×480
+  * 1280×720
+  * 1280×960
+  * 1920×1080
+* Selectable frame rates:
 
-- PyQt5
-- OpenCV (`python3-opencv`)
+  * 15 FPS
+  * 30 FPS
+  * 60 FPS
+* Live camera preview
+* Recording status indicator (red dot overlay during recording)
+* Supported output formats:
 
-## 빌드 및 실행
+  * MP4V (`.mp4`)
+  * XVID (`.avi`)
+  * MJPG (`.avi`)
+* Automatic timestamp-based filenames:
+
+  * `recording_YYYYMMDD_HHMMSS`
+
+## Dependencies
+
+* PyQt5
+* OpenCV (`python3-opencv`)
+
+## Build and Run
 
 ```bash
 colcon build --packages-select cam_recorder
 source install/setup.bash
 
-# 직접 실행
-ros2 run cam_recorder cam_recorder
-
-# 런치파일
+# Run
 ros2 launch cam_recorder cam_recorder.launch.py
+```
